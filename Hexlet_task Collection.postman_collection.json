@@ -1,0 +1,179 @@
+{
+	"info": {
+		"_postman_id": "d9fcc4b2-982b-4e15-bc3f-88db08bbc4c3",
+		"name": "Hexlet_task Collection",
+		"description": "1. **GET** timestampOnly - Проверка работы эндопинта при дате 2024-01-01\n    \n2. GET shortTimestamp - Проверка коректной работы эндпоинта при сокращенном формате даты - 2024-1-1\n    \n3. GET timestampPlusYears - Проверка добавления 100 лет",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "27529395"
+	},
+	"item": [
+		{
+			"name": "timestampOnly",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"correctSum\", ()=> {\r",
+							"\r",
+							"    pm.expect()\r",
+							"});\r",
+							"\r",
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{host}}?timestamp={{fulltimestamp}}",
+					"host": [
+						"{{host}}"
+					],
+					"query": [
+						{
+							"key": "timestamp",
+							"value": "{{fulltimestamp}}"
+						}
+					]
+				},
+				"description": "Проверка работы эндопинта при дате 2024-01-01"
+			},
+			"response": []
+		},
+		{
+			"name": "shortTimestamp",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"correctSum\", ()=> {\r",
+							"    const sum = \"Mon Jan 01 2024 00:00:00 GMT+0000\";\r",
+							"        \r",
+							"    pm.expect(pm.response.json().sum).to.be.eql(sum);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}?timestamp=2024-1-1",
+					"host": [
+						"{{host}}"
+					],
+					"query": [
+						{
+							"key": "timestamp",
+							"value": "2024-1-1"
+						}
+					]
+				},
+				"description": "Проверка коректной работы эндпоинта при сокращенном формате даты - 2024-1-1"
+			},
+			"response": []
+		},
+		{
+			"name": "timestampPlusYears",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {\r",
+							"    pm.response.to.have.status(200);\r",
+							"});\r",
+							"\r",
+							"pm.test(\"correctSum\", ()=> {\r",
+							"    const sum = \"Sat Jan 01 2124 00:00:00 GMT+0000\";\r",
+							"    pm.expect(pm.response.json().sum).to.be.eql(sum);\r",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{host}}?timestamp=2024-01-01&years=100",
+					"host": [
+						"{{host}}"
+					],
+					"query": [
+						{
+							"key": "timestamp",
+							"value": "2024-01-01"
+						},
+						{
+							"key": "years",
+							"value": "100"
+						}
+					]
+				},
+				"description": "GET timestampPlusYears - Проверка добавления 100 лет"
+			},
+			"response": []
+		}
+	],
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"packages": {},
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "host",
+			"value": "https://postman-echo.com/time/add",
+			"type": "string"
+		}
+	]
+}
